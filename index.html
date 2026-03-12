@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yashoda Hospitals - Research & Innovation</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+      color: #1f2937;
+      background: #f8fafc;
+    }
+    html { scroll-behavior: smooth; }
+    .container {
+      width: min(1100px, 92%);
+      margin: 0 auto;
+    }
+    header {
+      background: linear-gradient(135deg, #0f4c81, #1d7bb8);
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      gap: 20px;
+    }
+    .logo {
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 0.95rem;
+      opacity: 0.95;
+    }
+    .nav-links a:hover { opacity: 1; text-decoration: underline; }
+
+    .hero {
+      background: linear-gradient(rgba(10, 37, 64, 0.78), rgba(10, 37, 64, 0.78)), url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1600&q=80') center/cover;
+      color: white;
+      padding: 110px 0 90px;
+    }
+    .hero-content {
+      max-width: 760px;
+    }
+    .hero h1 {
+      font-size: 2.8rem;
+      line-height: 1.15;
+      margin-bottom: 18px;
+    }
+    .hero p {
+      font-size: 1.08rem;
+      margin-bottom: 28px;
+      color: #e5eef7;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-block;
+      padding: 12px 22px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.25s ease;
+    }
+    .btn-primary {
+      background: white;
+      color: #0f4c81;
+    }
+    .btn-primary:hover { background: #e8f1f8; }
+    .btn-secondary {
+      border: 1px solid rgba(255,255,255,0.65);
+      color: white;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.08); }
+
+    section {
+      padding: 72px 0;
+    }
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 12px;
+      color: #0f172a;
+      text-align: center;
+    }
+    .section-subtitle {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto 36px;
+      color: #475569;
+    }
+
+    .about-grid,
+    .stats-grid,
+    .focus-grid,
+    .projects-grid,
+    .team-grid,
+    .contact-grid {
+      display: grid;
+      gap: 22px;
+    }
+    .about-grid {
+      grid-template-columns: 1.2fr 1fr;
+      align-items: center;
+    }
+    .about-card,
+    .stat-card,
+    .focus-card,
+    .project-card,
+    .team-card,
+    .contact-card {
+      background: white;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+    .about-card p { margin-bottom: 14px; color: #334155; }
+    .about-list {
+      padding-left: 18px;
+      color: #334155;
+    }
+    .about-image {
+      min-height: 320px;
+      border-radius: 16px;
+      background: url('https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=1200&q=80') center/cover;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+    }
+
+    .stats-grid {
+      grid-template-columns: repeat(4, 1fr);
+      margin-top: 12px;
+    }
+    .stat-card {
+      text-align: center;
+      padding: 28px 18px;
+    }
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #0f4c81;
+      margin-bottom: 8px;
+    }
+    .stat-label { color: #475569; }
+
+    .focus-grid,
+    .projects-grid,
+    .team-grid,
+    .contact-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .focus-card h3,
+    .project-card h3,
+    .team-card h3,
+    .contact-card h3 {
+      margin-bottom: 10px;
+      color: #0f172a;
+    }
+    .focus-card p,
+    .project-card p,
+    .team-card p,
+    .contact-card p {
+      color: #475569;
+      margin-bottom: 12px;
+    }
+    .tag {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      background: #e0f2fe;
+      color: #075985;
+      margin: 4px 6px 0 0;
+    }
+
+    .timeline {
+      max-width: 860px;
+      margin: 0 auto;
+      display: grid;
+      gap: 18px;
+    }
+    .timeline-item {
+      background: white;
+      border-left: 5px solid #0f4c81;
+      border-radius: 12px;
+      padding: 18px 20px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+    }
+    .timeline-item h4 { margin-bottom: 8px; }
+    .timeline-item p { color: #475569; }
+
+    .cta {
+      background: linear-gradient(135deg, #0f4c81, #155e75);
+      color: white;
+      text-align: center;
+      border-radius: 20px;
+      padding: 42px 24px;
+    }
+    .cta h2 { margin-bottom: 12px; font-size: 2rem; }
+    .cta p { max-width: 700px; margin: 0 auto 20px; color: #e2e8f0; }
+
+    .contact-form {
+      display: grid;
+      gap: 14px;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      font-size: 0.98rem;
+      outline: none;
+    }
+    .contact-form textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+    .contact-form button {
+      border: none;
+      cursor: pointer;
+    }
+
+    footer {
+      background: #0f172a;
+      color: #cbd5e1;
+      padding: 26px 0;
+      margin-top: 60px;
+    }
+    .footer-wrap {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .muted { color: #64748b; font-size: 0.95rem; }
+
+    @media (max-width: 900px) {
+      .about-grid,
+      .stats-grid,
+      .focus-grid,
+      .projects-grid,
+      .team-grid,
+      .contact-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .hero h1 { font-size: 2.2rem; }
+    }
+
+    @media (max-width: 640px) {
+      nav { flex-direction: column; align-items: flex-start; }
+      .nav-links { gap: 12px; }
+      .about-grid,
+      .stats-grid,
+      .focus-grid,
+      .projects-grid,
+      .team-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero { padding: 80px 0 70px; }
+      .hero h1 { font-size: 1.9rem; }
+      .section-title { font-size: 1.65rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">Research & Innovation</div>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#focus">Focus Areas</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#milestones">Milestones</a></li>
+          <li><a href="#team">Team</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Advancing Clinical Research Through Data, Innovation and Collaboration</h1>
+        <p>
+          A dedicated webpage to showcase hospital research initiatives, registries, analytics projects,
+          AI-based innovations and interdisciplinary collaborations across departments.
+        </p>
+        <div class="hero-buttons">
+          <a href="#projects" class="btn btn-primary">View Projects</a>
+          <a href="#contact" class="btn btn-secondary">Collaborate With Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">About the Research Unit</h2>
+      <p class="section-subtitle">
+        This platform highlights the research, innovation and data science work being developed within the hospital to support clinical excellence, evidence generation and better patient outcomes.
+      </p>
+      <div class="about-grid">
+        <div class="about-card">
+          <p>
+            Our research unit works at the intersection of clinical care, data science, biostatistics and digital health.
+            The goal is to create strong systems for registries, research datasets, analytics and AI deployment in the hospital ecosystem.
+          </p>
+          <p>
+            We support investigators and departments in planning, executing and scaling high-impact research projects by bringing together clinicians, researchers, data scientists and technology teams.
+          </p>
+          <ul class="about-list">
+            <li>Clinical registry development and governance</li>
+            <li>Research data management and analytics support</li>
+            <li>AI and predictive modeling initiatives</li>
+            <li>Cross-functional collaboration with clinical and IT teams</li>
+          </ul>
+        </div>
+        <div class="about-image"></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">03</div>
+          <div class="stat-label">Registry Priorities</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">10+</div>
+          <div class="stat-label">Research Themes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">05</div>
+          <div class="stat-label">Clinical Collaborations</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">01</div>
+          <div class="stat-label">Data Governance Framework</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="focus">
+    <div class="container">
+      <h2 class="section-title">Key Focus Areas</h2>
+      <p class="section-subtitle">
+        Core domains where the hospital research and innovation team is actively building capability.
+      </p>
+      <div class="focus-grid">
+        <div class="focus-card">
+          <h3>Clinical Registries</h3>
+          <p>Structured registries for longitudinal patient data capture, monitoring, research and quality improvement.</p>
+          <span class="tag">ICU Registry</span>
+          <span class="tag">Hematology Registry</span>
+          <span class="tag">AMR Registry</span>
+        </div>
+        <div class="focus-card">
+          <h3>AI in Healthcare</h3>
+          <p>Identification and deployment of AI use cases across hospital workflows, diagnostics and research.</p>
+          <span class="tag">Predictive Models</span>
+          <span class="tag">NLP</span>
+          <span class="tag">Clinical Decision Support</span>
+        </div>
+        <div class="focus-card">
+          <h3>Data Governance</h3>
+          <p>Frameworks for secure, ethical and standardized handling of research and hospital data assets.</p>
+          <span class="tag">Policy</span>
+          <span class="tag">Compliance</span>
+          <span class="tag">Data Standards</span>
+        </div>
+        <div class="focus-card">
+          <h3>Research Analytics</h3>
+          <p>Data extraction, dashboarding, cohort analysis and reporting to support investigators and R&D teams.</p>
+          <span class="tag">Dashboards</span>
+          <span class="tag">Cohort Studies</span>
+          <span class="tag">Outcomes Research</span>
+        </div>
+        <div class="focus-card">
+          <h3>Clinical-IT Collaboration</h3>
+          <p>Working with hospital IT teams to align EMR systems, data structures and digital research infrastructure.</p>
+          <span class="tag">EMR</span>
+          <span class="tag">Integration</span>
+          <span class="tag">Interoperability</span>
+        </div>
+        <div class="focus-card">
+          <h3>External Partnerships</h3>
+          <p>Academic, technology and funding collaborations to accelerate translational and applied research.</p>
+          <span class="tag">Industry</span>
+          <span class="tag">Academic Partners</span>
+          <span class="tag">Funding Opportunities</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="container">
+      <h2 class="section-title">Highlighted Projects</h2>
+      <p class="section-subtitle">
+        Example projects that can be displayed and updated as the department progresses.
+      </p>
+      <div class="projects-grid">
+        <div class="project-card">
+          <h3>ICU Registry Development</h3>
+          <p>Creating a centralized patient registry framework for critical care data capture, monitoring and research use.</p>
+          <span class="tag">Critical Care</span>
+          <span class="tag">Registry Design</span>
+        </div>
+        <div class="project-card">
+          <h3>Hematology Research Registry</h3>
+          <p>Structured clinical data platform to support hematology case tracking, outcomes research and publication readiness.</p>
+          <span class="tag">Hematology</span>
+          <span class="tag">Outcomes</span>
+        </div>
+        <div class="project-card">
+          <h3>AMR Research & AI</h3>
+          <p>Developing registry and AI-based approaches for antimicrobial resistance tracking and stewardship support.</p>
+          <span class="tag">AMR</span>
+          <span class="tag">AI</span>
+        </div>
+        <div class="project-card">
+          <h3>EMR Data Enablement</h3>
+          <p>Working with the IT team to improve access, structure and usability of electronic medical record data for research.</p>
+          <span class="tag">EMR</span>
+          <span class="tag">IT Collaboration</span>
+        </div>
+        <div class="project-card">
+          <h3>AI Opportunity Mapping</h3>
+          <p>Identifying high-value hospital workflows and specialties where AI tools can be piloted and deployed safely.</p>
+          <span class="tag">Innovation</span>
+          <span class="tag">Deployment</span>
+        </div>
+        <div class="project-card">
+          <h3>Research Reporting Dashboard</h3>
+          <p>Tracking projects, publications, collaborators, milestones and research performance in one place.</p>
+          <span class="tag">Dashboard</span>
+          <span class="tag">R&D Operations</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="milestones">
+    <div class="container">
+      <h2 class="section-title">Roadmap & Milestones</h2>
+      <p class="section-subtitle">
+        A simple timeline section that can be updated as work progresses.
+      </p>
+      <div class="timeline">
+        <div class="timeline-item">
+          <h4>Phase 1 - Identify Priority Registry Areas</h4>
+          <p>Finalize ICU, Hematology and AMR as the first focused registry areas and align stakeholders.</p>
+        </div>
+        <div class="timeline-item">
+          <h4>Phase 2 - Clinical and IT Alignment</h4>
+          <p>Meet with clinical teams and IT stakeholders to define EMR dependencies, workflows and data requirements.</p>
+        </div>
+        <div class="timeline-item">
+          <h4>Phase 3 - Data Governance Policy</h4>
+          <p>Draft and review a research data governance policy to support secure and standardized data use.</p>
+        </div>
+        <div class="timeline-item">
+          <h4>Phase 4 - AI Use Case Identification</h4>
+          <p>Shortlist hospital-ready AI opportunities and build pilots in selected clinical pathways.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="team">
+    <div class="container">
+      <h2 class="section-title">Our Team</h2>
+      <p class="section-subtitle">
+        Add your departmental leadership, clinicians, data science members and collaborators here.
+      </p>
+      <div class="team-grid">
+        <div class="team-card">
+          <h3>Research Leadership</h3>
+          <p>Department leads driving innovation, strategy and hospital-wide research collaborations.</p>
+          <span class="tag">Leadership</span>
+        </div>
+        <div class="team-card">
+          <h3>Clinical Collaborators</h3>
+          <p>Consultants and specialty teams contributing domain expertise, data context and research priorities.</p>
+          <span class="tag">Clinicians</span>
+        </div>
+        <div class="team-card">
+          <h3>Data & Analytics Team</h3>
+          <p>Data scientists, analysts and statisticians supporting design, analysis, modeling and reporting.</p>
+          <span class="tag">Data Science</span>
+          <span class="tag">Biostatistics</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="cta">
+        <h2>Building a Stronger Research Ecosystem</h2>
+        <p>
+          From registries and governance to analytics and AI, this webpage can serve as the central digital face of the hospital's research and innovation journey.
+        </p>
+        <a href="#contact" class="btn btn-primary">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title">Contact / Collaboration</h2>
+      <p class="section-subtitle">
+        This section can later be linked to a real email or backend form. For now it acts as a clean front-end contact page.
+      </p>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h3>Research Office</h3>
+          <p>Email: research@hospital.org</p>
+          <p>Phone: +91-XXXXXXXXXX</p>
+          <p class="muted">Replace with your official contact details.</p>
+        </div>
+        <div class="contact-card" style="grid-column: span 2;">
+          <h3>Send an Enquiry</h3>
+          <form class="contact-form" onsubmit="submitForm(event)">
+            <input type="text" placeholder="Your Name" required />
+            <input type="email" placeholder="Your Email" required />
+            <input type="text" placeholder="Department / Organization" />
+            <textarea placeholder="Write your message here..." required></textarea>
+            <button class="btn btn-primary" type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-wrap">
+      <div>© 2026 Research & Innovation Webpage</div>
+      <div>Designed for hospital research, data science and innovation showcase</div>
+    </div>
+  </footer>
+
+  <script>
+    function submitForm(event) {
+      event.preventDefault();
+      alert('Form submitted successfully. Connect this to your backend or email service later.');
+    }
+  </script>
+</body>
+</html>
